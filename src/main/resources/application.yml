@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+# Datasource configuration
+database:
+  connections:
+    tcsdb:
+      driver-class-name=com: com.mysql.jdbc.Driver
+      #dbname: "tcsdb"
+      url: "jdbc:mysql://localhost:3306/tcsdb"
+      username: root
+      password: root
+      retry_delay: 3
+      retry_count: 20
+      validationQuery: SELECT 1 FROM DUAL
+
+## Actuator endpoints management
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: "health, info, metrics, trace, env"
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
